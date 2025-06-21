@@ -1,0 +1,138 @@
+/* style.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    
+    /* --- Full Screen Background Image Styling (from previous step) --- */
+    background-image: url('assets/images/aura1.jpg'); /* Your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    color: #fff; /* Default text color, usually overwritten by container styles */
+}
+
+/* Overlay for better text readability on the full-screen background */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay on the full screen */
+    z-index: -1; /* Positioned behind the content */
+}
+
+
+.login-container {
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+    
+    /* --- Make Form Container Background Transparent/Semi-Transparent --- */
+    background-color: transparent; /* This makes the background image visible through the container */
+    /* If you want a slight tint for the form itself, use: background-color: rgba(255, 255, 255, 0.1); */
+
+    z-index: 1; /* Ensure the form container is above the body overlay */
+    color: #fff; /* Default text color inside the form, as it will be on a dark image */
+}
+
+/* Add an INTERNAL overlay within the login-container for form element readability */
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay inside the form */
+                                         /* Adjust opacity (0.0 to 1.0) for desired effect */
+    border-radius: 10px; /* Match container border-radius */
+    z-index: 0; /* Positioned behind form content but over the container's (transparent) background */
+}
+
+
+/* Ensure inner elements are above the internal overlay */
+.login-container h2,
+.login-container form,
+.login-container label,
+.login-container input,
+.login-container button,
+.login-container .register-link,
+.login-container .form-check-inline,
+.login-container .alert-danger {
+    position: relative; /* Needed to respect z-index */
+    z-index: 1; /* Bring these elements above the ::before overlay */
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    color: #fff; /* Heading color should be white on the dark overlay */
+}
+
+/* Ensure input fields are readable against the dark background/overlay */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white background for inputs */
+    color: #333; /* Dark text inside inputs */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.form-control::placeholder {
+    color: #666;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: #0d6efd;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+.register-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #fff; /* Link text color on the dark overlay */
+}
+.register-link a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+.register-link a:hover {
+    text-decoration: underline;
+}
+.form-check-inline {
+    margin-right: 1.5rem;
+    color: #fff; /* Radio button labels color on the dark overlay */
+}
+/* Specific styling for error messages */
+.invalid-feedback {
+    color: #ffc107; /* Lighter color for better visibility on dark background */
+}
+.alert-danger {
+    color: #fff; /* White text for alert */
+    background-color: rgba(220, 53, 69, 0.8); /* Semi-transparent red background for alert */
+    border-color: rgba(220, 53, 69, 0.9);
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    text-align: left;
+}
